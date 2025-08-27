@@ -907,11 +907,11 @@ smtp_sasl_security_options = {{ postfix_smtp_sasl_security_options }}
 {% endif %}
 smtp_tls_wrappermode = {{ postfix_smtp_tls_wrappermode | ternary('yes', 'no') }}
 
-{% if postfix_smtpd_milters is defined and postfix_smtpd_milters != "" %}
-smtpd_milters = {{ postfix_smtpd_milters }}
+{% if postfix_smtpd_milters is defined and postfix_smtpd_milters | ansible.builtin.bool %}
+smtpd_milters = {% if postfix_smtpd_milters is string %}{{ postfix_smtpd_milters }}{% else %}{{ postfix_smtpd_milters | join(', ') }}
 {% endif %}
-{% if postfix_non_smtpd_milters is defined and postfix_non_smtpd_milters != "" %}
-non_smtpd_milters = {{ postfix_non_smtpd_milters }}
+{% if postfix_non_smtpd_milters is defined and postfix_non_smtpd_milters | ansible.builtin.bool %}
+smtpd_milters = {% if postfix_non_smtpd_milters is string %}{{ postfix_non_smtpd_milters }}{% else %}{{ postfix_non_smtpd_milters | join(', ') }}
 {% endif %}
 {% if postfix_milter_default_action is defined and postfix_milter_default_action != "" %}
 milter_default_action = {{ postfix_milter_default_action }}

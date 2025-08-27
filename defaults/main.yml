@@ -220,11 +220,11 @@ postfix_smtp_tls_security_level: none
 # List of custom master.cf entries if more services are needed outside of postfix defaults
 # postfix_master_custom: []
 
-# Comma-separated list of Postfix before-queue SMTP-only Milters
-# postfix_smtpd_milters: ""
+# Yaml list (or string of comma-separated list) of Postfix before-queue SMTP-only Milters
+# postfix_smtpd_milters: []
 
-# Comma-separated list of Postfix before-queue non-SMTP Milters
-# postfix_non_smtpd_milters: ""
+# Yaml list (or string of comma-separated list) of Postfix before-queue non-SMTP Milters
+# postfix_non_smtpd_milters: []
 
 # What to do in case of errors from milters? Specify accept, reject, tempfail, or quarantine (Postfix 2.6 or later).
 # postfix_milter_default_action: accept
