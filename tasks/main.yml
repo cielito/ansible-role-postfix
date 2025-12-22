@@ -93,17 +93,17 @@
     _postfix_smtpd_recipient_restrictions: >-
       {% if postfix_smtpd_recipient_restrictions is defined %}
       {% if postfix_smtpd_recipient_restrictions is string %}
-      {{ _postfix_smtpd_recipient_restrictions_check_recipient_access | trim }} {{ postfix_smtpd_recipient_restrictions }}
+      {{ _postfix_smtpd_recipient_restrictions_check_recipient_access | default('', true) | trim }} {{ postfix_smtpd_recipient_restrictions }}
       {% elif postfix_smtpd_recipient_restrictions is iterable and (postfix_smtpd_recipient_restrictions is not string and postfix_smtpd_recipient_restrictions is not mapping) %}
-      {{ _postfix_smtpd_recipient_restrictions_check_recipient_access | trim }} {% for domain in postfix_smtpd_recipient_restrictions %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {{ _postfix_smtpd_recipient_restrictions_check_recipient_access | default('', true) | trim }} {% for domain in postfix_smtpd_recipient_restrictions %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
       {% endif %}
       {% endif %}
     _postfix_smtpd_sender_restrictions: >-
       {% if postfix_smtpd_sender_restrictions is defined %}
       {% if postfix_smtpd_sender_restrictions is string %}
-      {{ _postfix_smtpd_sender_restrictions_check_sender_access | trim }} {{ postfix_smtpd_sender_restrictions }}
+      {{ _postfix_smtpd_sender_restrictions_check_sender_access | default('', true) | trim }} {{ postfix_smtpd_sender_restrictions }}
       {% elif postfix_smtpd_sender_restrictions is iterable and (postfix_smtpd_sender_restrictions is not string and postfix_smtpd_sender_restrictions is not mapping) %}
-      {{ _postfix_smtpd_sender_restrictions_check_sender_access | trim }} {% for domain in postfix_smtpd_sender_restrictions %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {{ _postfix_smtpd_sender_restrictions_check_sender_access | default('', true) | trim }} {% for domain in postfix_smtpd_sender_restrictions %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
       {% endif %}
       {% endif %}
     _postfix_virtual_mailbox_domains: >-
