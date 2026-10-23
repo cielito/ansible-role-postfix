@@ -406,7 +406,7 @@ argument_specs:
 
       postfix_master_custom:
         type: list
-        elements: dict
+        elements: str
         required: false
         description: List of custom master.cf entries if more services are needed outside of postfix defaults.
 
